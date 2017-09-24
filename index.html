@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>FooBar's Magical speaker!</title>
+  <div class="container">
+  <h1>R.O.S.S By FooBar</h1>
+  <h2>Now playing:</h2>
+  <p id="now-playing"></p>
+  <h2>Up Next:</h2>
+  <table class="table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Song Title</th>
+            </tr>
+        </thead>
+        <tbody id="playlist">
+
+        </tbody>
+  </table>
+  </div>
+  <script type="text/javascript">
+    var ws = new WebSocket("ws://127.0.0.1:8080/websocket");
+    ws.onopen = function() {};
+    ws.onmessage = function (evt) {
+        var file = (evt.data).split("\n");
+        console.log(file);
+        var table = document.getElementById("playlist");
+        table.innerHTML = '';
+        document.getElementById("now-playing").innerHTML = file[0]
+        for(var i=1, len=file.length; i < len; i++){
+            var number = (i);
+            var name = (file[i]);
+            console.log(file[i])
+            console.log(i)
+            var newrow = table.insertRow(-1);
+            var numberCell = newrow.insertCell(0);
+            numberCell.innerHTML = number
+            var nameCell = newrow.insertCell(1);
+            nameCell.innerHTML = name
+        };
+    };
+  </script>
+    <div class="container">
+    <h3>Request a song:</h3>
+    <form action="/request" method="post">
+        <input name="link" placeholder="YouTube Search" type="text"/>
+        <button type="submit">Send request</button>
+    </form>
+    </div>
+</head>
+</html>
