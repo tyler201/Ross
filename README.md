@@ -17,6 +17,5 @@ This is R.O.S.S. The Request-oriented-speaker-system. This is a program that all
   - Add in a vote skip button.
   - Change format to a smaller file, that's still compatible with VLC player.
   
-  ---------------------------------------------------------------------------
-  
-  Made by Tyler
+--------------------------------------------------------------------------- 
+Made by Tyler
