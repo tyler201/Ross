@@ -3,9 +3,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <title>FooBar's Magical speaker!</title>
+  <title>The ROSS Project</title>
   <div class="container">
-  <h1>R.O.S.S By FooBar (Admin panel)</h1>
+  <h1>R.O.S.S - By Tyler (Admin panel)</h1>
   <h2>Now playing:</h2>
   <p id="now-playing"></p>
   <h2>Up Next:</h2>
@@ -41,7 +41,9 @@
             var nameCell = newrow.insertCell(1);
             nameCell.innerHTML = name
             var buttonCell = newrow.insertCell(2);
-            buttonCell.innerHTML = '<form action="/admin-panel" method="post"><input name="function" value="Skip '+number+'" type="submit"/></form>';
+            buttonCell.innerHTML = '<form action="/admin-panel" method="post"><button name="function" value="Skip '+number+'" type="submit">Skip</button></form>';
+            var buttonCell2 = newrow.insertCell(3);
+            buttonCell2.innerHTML = '<form action="/admin-panel" method="post"><button name="function" value="Blacklist '+number+'" type="submit">Blacklist</button></form>';
         };
     };
   </script>
@@ -53,7 +55,8 @@
     </form>
     <h3>Admin tools:</h3>
     <form action="/admin-panel" method="post">
-        <input name="function" value="Skip" type="submit"/>
+        <button name="function" value="Skip" type="submit">Skip current song</button>
+        <button name="function"  value="Blacklist 0" type="submit">Blacklist current song</button>
         <p></p>
         <input name="function" value="Set volume" type="submit"/>
         <input name="volume" type="number" min="0" max="100" step="1"/>

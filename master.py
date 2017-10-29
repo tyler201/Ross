@@ -123,6 +123,22 @@ def panelpost():
             filename = idlist[int(func.split(" ")[1])] + ".wav"
             os.remove(filename)
             idlist.pop(int(func.split(" ")[1]))
+        elif func.split(" ")[0] == "Blacklist":
+            print(func.split(" "))
+            if func.split(" ")[1] == "0":
+                print("First")
+                skipped = True
+            else:
+                print("Not first")
+                playlist.pop(int(func.split(" ")[1]))
+                filename = idlist[int(func.split(" ")[1])] + ".wav"
+                os.remove(filename)
+                idlist.pop(int(func.split(" ")[1]))
+            blacklistfile = open("config/blacklist.txt", "a")
+            video_id = idlist[int(func.split(" ")[1])]
+            url = downloader.get_url(video_id)
+            blacklistfile.write(url + "\n")
+            blacklistfile.close()
     redirect("/admin-panel")
 
 class TooLong(Exception):
